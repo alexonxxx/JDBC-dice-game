@@ -24,20 +24,7 @@ public class PantallaJocDaus extends javax.swing.JFrame {
     private javax.swing.JButton llistaJugades;
     private javax.swing.JTextField resultat;
     private javax.swing.JTextField textJugador;
-    
-    public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PantallaJocDaus frame = new PantallaJocDaus();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+   
     public PantallaJocDaus() {
         initComponents();
         this.controladorJocDaus = new ControladorJocDaus ();
