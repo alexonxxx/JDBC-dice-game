@@ -1,12 +1,15 @@
 package CapaPresentacio;
 
 import java.awt.EventQueue;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JOptionPane;
 
 import CapaAplicacio.ControladorJocDaus;
+import CapaPersistencia.LoginBBDD;
 
-public class PantallaJocDaus extends javax.swing.JFrame {
+public class PantallaJocDaus extends javax.swing.JFrame implements WindowListener{
 
     private ControladorJocDaus controladorJocDaus;
     private javax.swing.JTextField dau1;
@@ -25,9 +28,11 @@ public class PantallaJocDaus extends javax.swing.JFrame {
     private javax.swing.JTextField resultat;
     private javax.swing.JTextField textJugador;
    
-    public PantallaJocDaus() {
+   
+    public PantallaJocDaus() throws Exception {
         initComponents();
-        this.controladorJocDaus = new ControladorJocDaus ();
+        
+        this.controladorJocDaus = new ControladorJocDaus();
         textJugador.setText(controladorJocDaus.getNomJugador());      
         int i = textJugador.getText().length();
         textJugador.setSelectionStart(0);
@@ -36,7 +41,7 @@ public class PantallaJocDaus extends javax.swing.JFrame {
     }
    
     private void initComponents() {
-
+    	setResizable(false);
         jLabel1 = new javax.swing.JLabel();
         jLabel1.setBounds(39, 38, 88, 17);
         textJugador = new javax.swing.JTextField();
@@ -87,7 +92,12 @@ public class PantallaJocDaus extends javax.swing.JFrame {
         jugar.setEnabled(false);
         jugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jugarActionPerformed(evt);
+                try {
+					jugarActionPerformed(evt);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -153,7 +163,7 @@ public class PantallaJocDaus extends javax.swing.JFrame {
         getContentPane().add(llistaJugades);
         getContentPane().add(jScrollPane1);
     }
-    private void jugarActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jugarActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
         String jugada;
         controladorJocDaus.jugar();
         jugada = controladorJocDaus.resultatPartidaEnCurs();
@@ -182,4 +192,53 @@ public class PantallaJocDaus extends javax.swing.JFrame {
         jugades = controladorJocDaus.resultatPartides();
         jugadesLlista.setText(jugades);
     }
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		if(e.getSource()==this){
+			 try {
+				new LoginBBDD().closeConnection();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

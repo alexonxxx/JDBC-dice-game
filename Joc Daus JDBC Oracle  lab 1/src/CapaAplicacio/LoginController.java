@@ -8,5 +8,8 @@ public class LoginController {
 		LoginBBDD.login(user, password);
 		
 	}
+	public void finalitzarJoc() throws Exception{
+		LoginBBDD.closeConnection();
+	}
 
 }

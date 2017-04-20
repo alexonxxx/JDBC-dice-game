@@ -7,6 +7,7 @@ public class Partida {
     public Partida() {
         dau1 = dau2 = 0;
     }
+    
 
     public Partida(int d1, int d2) {
         dau1 = d1;

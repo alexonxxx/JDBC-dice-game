@@ -22,7 +22,7 @@ import java.util.concurrent.Executor;
 
 import oracle.jdbc.OracleDriver;
 
-public class ConnectionBBDD implements Connection {
+class ConnectionBBDD implements Connection {
 
 	private Connection connection;
 

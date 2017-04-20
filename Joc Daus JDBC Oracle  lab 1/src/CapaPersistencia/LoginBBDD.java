@@ -13,7 +13,7 @@ public class LoginBBDD {
 		if(connection==null) throw new Exception("No s'ha iniciat sessio");
 		return connection;
 	}
-	 static void closeConnection() throws Exception{
+	public static void closeConnection() throws Exception{
 		try{
 			connection.close();
 			connection=null;

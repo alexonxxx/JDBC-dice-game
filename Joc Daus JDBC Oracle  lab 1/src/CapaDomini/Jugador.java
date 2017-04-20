@@ -40,6 +40,11 @@ public class Jugador {
         this.desarDarreraPartida();
         this.actualitzarGuanyades();
     }
+    public void addPartides(List<Partida> partidesBBDD ){
+    	for(Partida partida: partidesBBDD){
+    		partides.add(partida);
+    	}
+    }
 
     public String resultatPartidaEnCurs() {
         return darreraPartida.toString();

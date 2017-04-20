@@ -7,8 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.BorderFactory;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,9 +21,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import CapaAplicacio.ControladorJocDaus;
 import CapaAplicacio.LoginController;
+import CapaPersistencia.LoginBBDD;
+
 import java.awt.Font;
+import java.awt.Graphics;
+
 
 @SuppressWarnings("serial")
 public class LoginView extends JFrame implements ActionListener, KeyListener{
@@ -28,7 +34,6 @@ public class LoginView extends JFrame implements ActionListener, KeyListener{
 	private JPanel contentPane;
 	private JPanel panel;
 	private JButton btnEntrar;
-	
 	private JTextField txtUsuari;
 	private JPasswordField txtPassword;
 	private JLabel lblUsuari;
@@ -55,10 +60,11 @@ public class LoginView extends JFrame implements ActionListener, KeyListener{
 	 */
 	public LoginView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(500, 200, 470, 340);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
+		setResizable(false);
 		setContentPane(contentPane);
 		initComponents();
 	}
@@ -66,10 +72,10 @@ public class LoginView extends JFrame implements ActionListener, KeyListener{
 	private void initComponents() {
 		this.btnEntrar = new JButton("Entrar");
 		this.btnEntrar.addActionListener(this);
+		this.panel = new FondoPantalla();
 		
-
-		this.panel = new JPanel();
-		this.panel.setBounds(100, 48, 319, 120);
+		Graphics g=null;
+		this.panel.paintComponents(g);
 		this.contentPane.add(this.panel);
 		this.panel.setLayout(null);
 
@@ -96,16 +102,16 @@ public class LoginView extends JFrame implements ActionListener, KeyListener{
 
 		this.btnEntrar = new JButton("Entrar");
 		this.btnEntrar.addActionListener(this);
-		this.btnEntrar.setBounds(175, 179, 117, 29);
+		this.btnEntrar.setBounds(160, 187, 117, 29);
 		this.panel.add(this.btnEntrar);
 		
 		JLabel lblNewLabel = new JLabel("LoginBBDD");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setForeground(Color.blue);
 		lblNewLabel.setBounds(175, 29, 76, 26);
 		panel.add(lblNewLabel);
-
-
+		
+		
 	}
 
 	@Override
@@ -148,6 +154,7 @@ public class LoginView extends JFrame implements ActionListener, KeyListener{
 		
 	}
 
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -159,4 +166,5 @@ public class LoginView extends JFrame implements ActionListener, KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
+
 }
