@@ -33,7 +33,7 @@ class ConnectionBBDD implements Connection {
 					password);
 
 		} catch (Exception e) {
-			throw new Exception("Error al connectar a la base de dades " + e);
+			throw new Exception("Error al connectar a la base de dades ");
 		}
 
 	}
