@@ -2,7 +2,11 @@ package CapaAplicacio;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
+
+import CapaAplicacioDTO.JugadorDTO;
+import CapaAplicacioDTO.PartidaDTO;
 import CapaDomini.Dau;
 import CapaDomini.Jugador;
 import CapaDomini.Partida;
@@ -28,9 +32,6 @@ public class ControladorJocDaus {
         int tirada2 = this.tirarDau(dau2);
         jugador.addPartida(tirada1, tirada2);
         controladorBBDD.afegirPartidaBBDD(jugador, tirada1, tirada2);
-      
-      
-        
     }
 
     private int tirarDau(Dau dau) {
@@ -38,12 +39,12 @@ public class ControladorJocDaus {
         return dau.valorCara();
     }
 
-    public String getNomJugador() {
-        return jugador.getNom();
+    public JugadorDTO getJugador() {
+        return new JugadorDTO(jugador);
     }
 
-    public String resultatPartidaEnCurs() {
-        return jugador.resultatPartidaEnCurs();
+    public PartidaDTO getPartidaEnCurs() {
+        return new PartidaDTO(jugador.getPartidaEnCurs());
     }
 
     public double guanyadesPercent() {
@@ -67,8 +68,11 @@ public class ControladorJocDaus {
     }
     
 
-    public String resultatPartides() {
-    	
-        return jugador.resultatPartides();
+    public List<PartidaDTO> resultatPartides() {
+    	List<PartidaDTO> partides = new ArrayList<PartidaDTO>();
+    	for(Partida p: jugador.getPartides()){
+    		partides.add(new PartidaDTO(p));
+    	}
+        return partides;
     }   	
 }

@@ -18,17 +18,8 @@ public class Partida {
         return dau1 + dau2 == 7;
     }
 
-    @Override
-    public String toString() {
-        String resultat;
-
-        if (getGuanyada()) {
-            resultat = "guanyada";
-        } else {
-            resultat = "perduda";
-        }
-        return "Dau1: " + dau1 + ", Dau2: " + dau2 + ", Resultat: " + resultat;
-    }
+    
+ 
 
     public int getDau1() {
         return dau1;

@@ -3,10 +3,14 @@ package CapaPresentacio;
 import java.awt.Graphics;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import CapaAplicacio.ControladorJocDaus;
+import CapaAplicacioDTO.JugadorDTO;
+import CapaAplicacioDTO.PartidaDTO;
 import CapaPersistencia.LoginBBDD;
 
 @SuppressWarnings("serial")
@@ -29,12 +33,15 @@ public class PantallaJocDaus extends javax.swing.JFrame implements WindowListene
 	private javax.swing.JTextField resultat;
 	private javax.swing.JTextField textJugador;
 	private DausFondo panel;
+	private JugadorDTO jugador;
 
 	public PantallaJocDaus() throws Exception {
 		initComponents();
 
 		this.controladorJocDaus = new ControladorJocDaus();
-		textJugador.setText(controladorJocDaus.getNomJugador());
+		this.jugador= this.controladorJocDaus.getJugador();
+		
+		textJugador.setText(this.jugador.getNomJugador());
 		int i = textJugador.getText().length();
 		textJugador.setSelectionStart(0);
 		textJugador.setSelectionEnd(i);
@@ -167,17 +174,17 @@ public class PantallaJocDaus extends javax.swing.JFrame implements WindowListene
 	}
 
 	private void jugarActionPerformed(java.awt.event.ActionEvent evt) {
-		String jugada;
+		PartidaDTO jugada;
 		try {
 			controladorJocDaus.jugar();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Error lectura BBDD", JOptionPane.ERROR_MESSAGE);
 		}
-		jugada = controladorJocDaus.resultatPartidaEnCurs();
-		dau1.setText(jugada.substring(6, 7));
-		dau2.setText(jugada.substring(15, 16));
-		resultat.setText(jugada.substring(27));
+		jugada = controladorJocDaus.getPartidaEnCurs();
+		dau1.setText(jugada.getDau1());
+		dau2.setText(jugada.getDau2());
+		resultat.setText(jugada.getResultat());
 		String s = String.format("%3.2f", controladorJocDaus.guanyadesPercent());
 		guanyades.setText(s);
 
@@ -195,9 +202,13 @@ public class PantallaJocDaus extends javax.swing.JFrame implements WindowListene
 	}
 
 	private void llistaJugadesActionPerformed(java.awt.event.ActionEvent evt) {
-		String jugades;
-		jugades = controladorJocDaus.resultatPartides();
-		jugadesLlista.setText(jugades);
+		List<PartidaDTO> jugades;
+		jugades =  controladorJocDaus.resultatPartides();
+		String partides="";
+		for(PartidaDTO p: jugades){
+			partides+= p.getInfoResultat()+"\n";
+		}
+		jugadesLlista.setText(partides.toString());
 	}
 
 	@Override
