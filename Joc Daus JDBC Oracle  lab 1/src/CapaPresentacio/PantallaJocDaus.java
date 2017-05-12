@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import CapaAplicacio.ControladorJocDaus;
+import CapaAplicacio.LoginController;
 import CapaAplicacioDTO.JugadorDTO;
 import CapaAplicacioDTO.PartidaDTO;
 import CapaPersistencia.LoginBBDD;
@@ -228,7 +229,7 @@ public class PantallaJocDaus extends javax.swing.JFrame implements WindowListene
 	public void windowClosing(WindowEvent e) {
 		if (e.getSource() == this) {
 			try {
-				new LoginBBDD().closeConnection();
+				new LoginController().finalitzarJoc();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
