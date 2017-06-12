@@ -17,8 +17,6 @@ public class Partida {
     public boolean getGuanyada() {
         return dau1 + dau2 == 7;
     }
-
-    
  
 
     public int getDau1() {
