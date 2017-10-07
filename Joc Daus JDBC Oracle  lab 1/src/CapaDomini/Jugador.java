@@ -25,7 +25,7 @@ public class Jugador {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
+//heyss
    
     public void addPartida(int dau1, int dau2) {
         darreraPartida = new Partida(dau1, dau2);
