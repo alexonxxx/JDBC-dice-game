@@ -15,7 +15,7 @@ public class Jugador {
     public Jugador(String nom) {
         this.nom = nom;
         partides = new ArrayList<Partida>();
-
+        //creacio jugador
     }
 
     public String getNom() {
@@ -30,12 +30,13 @@ public class Jugador {
     public void addPartida(int dau1, int dau2) {
         darreraPartida = new Partida(dau1, dau2);
         this.desarDarreraPartida();
-       
+       //guardar la partida com a ultima
     }
     public void addPartides(List<Partida> partidesBBDD ){
     	for(Partida partida: partidesBBDD){
     		partides.add(partida);
     	}
+        //afegir partides de la bbdd a jugador
     }
 
     public Partida getPartidaEnCurs() {
